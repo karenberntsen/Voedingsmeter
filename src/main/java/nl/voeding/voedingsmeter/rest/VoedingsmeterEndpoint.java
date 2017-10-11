@@ -16,7 +16,7 @@ public class VoedingsmeterEndpoint {
 	
 	@GetMapping("/product")
 	public String getHallo() {
-		return "Hallo";
+		return "Hallo allemaal";
 	}
 	
 	@GetMapping("/product2")
