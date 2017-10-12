@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.voeding.voedingsmeter.enums.Eenheid;
+import nl.voeding.voedingsmeter.enums.Productgroep;
 import nl.voeding.voedingsmeter.model.Product;
 import nl.voeding.voedingsmeter.service.VoedingsmeterService;
 
@@ -30,7 +31,7 @@ public class VoedingsmeterEndpoint {
 	
 	@GetMapping("/createProduct")
 	public Product createProduct() {
-		Product appel = new Product("appel",100f,Eenheid.GRAM,60f,0f,0.2f,0f,0.2f,13f,10.4f,null,2.0f,0.003f,"http://www.voedingscentrum.nl/encyclopedie/appel.aspx");
+		Product appel = new Product("appel",100f,Eenheid.GRAM,Productgroep.FRUIT,60f,0f,0.2f,0f,0.2f,13f,10.4f,null,2.0f,0.003f,"http://www.voedingscentrum.nl/encyclopedie/appel.aspx");
 		voedingsmeterService.save(appel);
 		return appel;
 	}

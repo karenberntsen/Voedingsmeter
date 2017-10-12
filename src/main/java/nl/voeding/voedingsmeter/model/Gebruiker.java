@@ -22,15 +22,62 @@ public class Gebruiker {
 	@NotNull
 	private String naam;
 	
-	@NotNull
 	private LocalDate geboortedatum;
 	
-	@NotNull
 	private Float lengte;
 	
 	@NotNull
-	@OneToMany(mappedBy = "gebruiker")
+	@OneToMany
 	private Set<Logboekdag> logboek = new HashSet<>();
 
 	//private Set<Lichaamssamenstelling> lichaamssamenstellingen = new HashSet<>();
+	
+	public Gebruiker() {}
+	
+	public Gebruiker(String naam, LocalDate geboortedatum, Float lengte) {
+		this.naam = naam;
+		this.geboortedatum = geboortedatum;
+		this.lengte = lengte;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNaam() {
+		return naam;
+	}
+
+	public void setNaam(String naam) {
+		this.naam = naam;
+	}
+
+	public LocalDate getGeboortedatum() {
+		return geboortedatum;
+	}
+
+	public void setGeboortedatum(LocalDate geboortedatum) {
+		this.geboortedatum = geboortedatum;
+	}
+
+	public Float getLengte() {
+		return lengte;
+	}
+
+	public void setLengte(Float lengte) {
+		this.lengte = lengte;
+	}
+	
+	public void addLogboekdag(Logboekdag logboekdag) {
+		logboek.add(logboekdag);
+	}
+	
+	public void removeLogboekdag(Logboekdag logboekdag) {
+		logboek.remove(logboekdag);
+	}
+
 }

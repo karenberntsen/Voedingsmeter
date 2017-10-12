@@ -26,7 +26,7 @@ public class Product {
 	private Eenheid eenheid=Eenheid.GRAM;
 	
 	@NotNull
-	private Productgroep productgroep;
+	private Productgroep productgroep=Productgroep.OVERIG;
 	
 	@Column(name="kcal",nullable=true)	
 	private Float kcal=null;
@@ -63,13 +63,13 @@ public class Product {
 
 	public Product() {};
 	
-	public Product(String naam, Float hoeveelheid, Eenheid eenheid, Float kcal, Float eiwit, Float vet,
+	public Product(String naam, Float hoeveelheid, Eenheid eenheid, Productgroep productgroep, Float kcal, Float eiwit, Float vet,
 			Float verzadigdVet, Float onverzadigdVet, Float koolhydraten, Float suikers, Float fructose, Float vezels,
 			Float zout,String bron) {
-		super();
 		this.naam = naam;
 		this.hoeveelheid = hoeveelheid;
 		this.eenheid = eenheid;
+		this.productgroep = productgroep;
 		this.kcal = kcal;
 		this.eiwit = eiwit;
 		this.vet = vet;
