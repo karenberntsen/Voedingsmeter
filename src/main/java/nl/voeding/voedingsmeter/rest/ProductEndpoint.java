@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import nl.voeding.voedingsmeter.enums.Eenheid;
 import nl.voeding.voedingsmeter.enums.Productgroep;
 import nl.voeding.voedingsmeter.model.Product;
-import nl.voeding.voedingsmeter.service.VoedingsmeterService;
+import nl.voeding.voedingsmeter.service.ProductService;
 
 @RestController
-public class VoedingsmeterEndpoint {
+public class ProductEndpoint {
 
 	@Autowired
-	VoedingsmeterService voedingsmeterService;
+	ProductService productService;
 	
 	@GetMapping("/hallo")
 	public String getHallo() {
@@ -32,34 +32,34 @@ public class VoedingsmeterEndpoint {
 	@GetMapping("/createProduct")
 	public Product createProduct() {
 		Product appel = new Product("appel",100f,Eenheid.GRAM,Productgroep.FRUIT,60f,0f,0.2f,0f,0.2f,13f,10.4f,null,2.0f,0.003f,"http://www.voedingscentrum.nl/encyclopedie/appel.aspx");
-		voedingsmeterService.save(appel);
+		productService.save(appel);
 		return appel;
 	}
 
 	@GetMapping("/getProducts")
 	public List<Product> getProducts() {
 		System.out.println("getProducts");
-		return voedingsmeterService.getAll();
+		return productService.getAll();
 	}
 	
 	@PostMapping("/ProductPost")
 	public String postEntiteit(@RequestBody Product product) {
 		System.out.println("Jojo");
 		System.out.println(product.getNaam());
-		voedingsmeterService.save(product);
+		productService.save(product);
 		return "happy";
 	}
 	
     @GetMapping("/getProductById/{id}")
 	public Product getProductById(@PathVariable int id) {
 		System.out.println("getProductById"+id);
-	    return voedingsmeterService.getProductById(id);
+	    return productService.getProductById(id);
 	}
 	
     @DeleteMapping("/delProductById/{id}")
     public void delProductById(@PathVariable int id) {
 		System.out.println("delProductById"+id);
-	    voedingsmeterService.delProductById(id);
+	    productService.delProductById(id);
 	}
 
 }

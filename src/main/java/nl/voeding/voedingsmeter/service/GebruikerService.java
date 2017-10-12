@@ -9,34 +9,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import nl.voeding.voedingsmeter.model.Gebruiker;
 import nl.voeding.voedingsmeter.model.Product;
+import nl.voeding.voedingsmeter.repositories.GebruikerRepository;
 import nl.voeding.voedingsmeter.repositories.ProductRepository;
 
 @Service
 @Transactional
-public class VoedingsmeterService {
+public class GebruikerService {
 
 	@Autowired
-	ProductRepository voedingsmeterRepository;
+	GebruikerRepository gebruikerRepository;
 	
-	public Product save(Product product) {
-		voedingsmeterRepository.save(product);
-		return product;
+	public Gebruiker save(Gebruiker gebruiker) {
+		gebruikerRepository.save(gebruiker);
+		return gebruiker;
 	}
 	
-	public List<Product> getAll() {
-		return (List<Product>)voedingsmeterRepository.findAll();
+	public List<Gebruiker> getAll() {
+		return (List<Gebruiker>)gebruikerRepository.findAll();
 	}
 	
-	public Product getProductById(int id) {
+	public Gebruiker getGebruikerById(int id) {
 		System.out.println("Service:getProductById"+id);
-	    return voedingsmeterRepository.findOne((long)id);
+	    return gebruikerRepository.findOne((long)id);
 	}
 	
-	public void delProductById(int id) {
-		System.out.println("Service:delProductById"+id);		
-		voedingsmeterRepository.delete((long)id);
+	public void delGebruikerById(int id) {
+		System.out.println("Service:delGebruikerById"+id);		
+		gebruikerRepository.delete((long)id);
 	}
 	
 }
