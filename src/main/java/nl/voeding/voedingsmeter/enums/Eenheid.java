@@ -2,6 +2,6 @@ package nl.voeding.voedingsmeter.enums;
 
 public enum Eenheid {
 	
-	    GRAM, LITER, STUK
+	    GRAM, LITER
 
 }

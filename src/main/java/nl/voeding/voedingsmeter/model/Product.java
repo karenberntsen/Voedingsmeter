@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 import nl.voeding.voedingsmeter.enums.Eenheid;
+import nl.voeding.voedingsmeter.enums.Productgroep;
 
 @Entity
 public class Product {
@@ -17,10 +18,15 @@ public class Product {
 
 	@NotNull
 	private String naam;
+	
 	@NotNull
 	private Float hoeveelheid;
+	
 	@NotNull
-	private Eenheid eenheid;
+	private Eenheid eenheid=Eenheid.GRAM;
+	
+	@NotNull
+	private Productgroep productgroep;
 	
 	@Column(name="kcal",nullable=true)	
 	private Float kcal=null;
