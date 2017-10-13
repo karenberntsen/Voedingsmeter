@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import nl.voeding.voedingsmeter.model.Gebruiker;
-import nl.voeding.voedingsmeter.model.Product;
+import nl.voeding.voedingsmeter.model.Logboekdag;
 import nl.voeding.voedingsmeter.repositories.GebruikerRepository;
-import nl.voeding.voedingsmeter.repositories.ProductRepository;
 
 @Service
 @Transactional
@@ -28,6 +27,12 @@ public class GebruikerService {
 	
 	public List<Gebruiker> getAll() {
 		return (List<Gebruiker>)gebruikerRepository.findAll();
+	}
+	
+	public void addLogboekdag(Logboekdag logboekdag,int id) {
+		Gebruiker gebruiker = getGebruikerById(id);
+		gebruiker.addLogboekdag(logboekdag);
+		save(gebruiker);
 	}
 	
 	public Gebruiker getGebruikerById(int id) {

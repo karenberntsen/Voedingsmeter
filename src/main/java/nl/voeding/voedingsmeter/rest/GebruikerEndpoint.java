@@ -14,9 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import nl.voeding.voedingsmeter.enums.Eenheid;
 import nl.voeding.voedingsmeter.enums.Productgroep;
 import nl.voeding.voedingsmeter.model.Gebruiker;
+import nl.voeding.voedingsmeter.model.LocalDateDeserializer;
+import nl.voeding.voedingsmeter.model.LocalDateSerializer;
+import nl.voeding.voedingsmeter.model.Logboekdag;
 import nl.voeding.voedingsmeter.model.Product;
 import nl.voeding.voedingsmeter.service.GebruikerService;
 import nl.voeding.voedingsmeter.service.ProductService;
@@ -34,6 +40,12 @@ public class GebruikerEndpoint {
 		return gebruiker;
 	}
 
+	@PostMapping("/addLogboekdagToGebruiker/{id}")
+	public void addLogboekdagToGebruiker(@RequestBody 	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class) LocalDate date,@PathVariable int id) {
+		gebruikerService.addLogboekdag(new Logboekdag(date), id);
+	}
+	
 	@GetMapping("/getGebruikers")
 	public List<Gebruiker> getGebruikers() {
 		System.out.println("getGebruikers");

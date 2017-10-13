@@ -23,6 +23,9 @@ import javax.persistence.JoinColumn;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 
 @Entity
 public class Logboekdag {
@@ -31,6 +34,8 @@ public class Logboekdag {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
 	@NotNull
     @Column(name = "datum", nullable = false, unique = true)
 	private LocalDate datum;

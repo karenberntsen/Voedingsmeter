@@ -92,7 +92,7 @@ public class Product {
 	}
 
 	public void setHoeveelheid(Float hoeveelheid) {
-		this.hoeveelheid = hoeveelheid;
+		this.hoeveelheid = hoeveelheid<=0 ? 0 : hoeveelheid;
 	}
 
 	public void setEenheid(Eenheid eenheid) {
